@@ -17,7 +17,7 @@ if(isset($_POST['update'])):
 	//var_dump($mobile_phone);
 //$edits=new Chaseuni();
 $edit->update($id,$name,$street_address,$country,$state,$zip_code,$mobile_phone);
-header("location:../inc/read.php");
+header("location:../process/display-update.php");
 endif;
 ?><link rel="stylesheet" href="../inc/bootstrap.css"/>
 <form action="" method="POST">

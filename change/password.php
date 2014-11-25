@@ -11,7 +11,7 @@ if(isset($_POST['update'])):
 	$password = ($_POST['password']);
  	$newpassword=($_POST['new_password']);
  	if($password==$newpassword){
- 		$chagnedPassword=$_POST['changed_password'];
+ 		$chagnedPassword=($_POST['changed_password']);
  		$edit->changePassword($id,$password);
 	header("location:../inc/read.php");
  	}
