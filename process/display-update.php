@@ -9,8 +9,8 @@ $update=$updateDisplay->read();
 
 ?>
 <link rel="stylesheet" href="../inc/bootstrap.css"/>
-<table class="table table-responsive">
-	<tr>
+<table class="table table-bordered">
+	<tr class="danger">
 		<td>S.N</td>
 		<td>Name:</td>
 		<td>Street Address:</td>
@@ -21,7 +21,7 @@ $update=$updateDisplay->read();
 	</tr>
 	<?php $i=1	;?>
 	<?php foreach($update as $key=>$value):?>
-		<tr>
+		<tr class="info">
 			<td><?php echo $i++ ;?></td>
 			<td><?php echo $value['name'] ;?></td>
 			<td><?php echo $value['street_address'] ;?></td>
@@ -29,7 +29,7 @@ $update=$updateDisplay->read();
 			<td><?php echo $value['state'] ;?></td>
 			<td><?php echo $value['zip_code'];?></td>
 			<td><?php echo $value['mobile_phone'] ;?></td>
-			<td><a href="update.php?id=<?php echo $value["user_id"];?>"/>Change</a></td>
+			<td><a href="../inc/read.php?id=<?php echo $value["user_id"];?>"/>Change</a></td>
 			</tr>
 		<?php endforeach;?>
 		</table>
