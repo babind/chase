@@ -37,14 +37,8 @@ Class Chaseuni{
 		$result=$query->fetch(PDO::FETCH_ASSOC);
 		return $result;
 	 }
-	 // public function createCode($street_address,$country,$state,$zip_code,$mobile_phone){
-	 // 	$sql="INSERT INTO users (street_address,country,state,zip_code,mobile_phone) VALUES(:street_address,:country,:state,:zip_code,:mobile_phone)";
-		// $query=$this->connection->prepare($sql);
-		// $submit=$query->execute(array(':street_address'=>$street_address,
-		// 								':country'=>$country,
-		// 								':state'=>$zip_code,
-		// 								':mobile_phone'=>$mobile_phone)); 	
-	 // }
+	 
+	 
 	public function update($id,$name,$street_address,$country,$state,$zip_code,$mobile_phone){
 		$sql="UPDATE users SET name=:name,street_address=:street_address,country=:country,state=:state,zip_code=:zip_code,mobile_phone=:mobile_phone WHERE user_id=:id";
 		$query=$this->connection->prepare($sql);
@@ -56,12 +50,28 @@ Class Chaseuni{
 										':zip_code'=>$zip_code,
 										':mobile_phone'=>$mobile_phone));
 	}
-	public function changePassword($id,$password){
-		$sql="UPDATE users SET password=:password WHERE user_id=:id";
+	public function changePassword($id,$changedpassword){
+		$sql="UPDATE users SET password=:changed_password WHERE user_id=:id";
 		$query=$this->connection->prepare($sql);
 		$query->execute(array(':id'=>$id,
-						':password'=>$password));
+						':changed_password'=>$changedpassword));
 	}
+
+	public function updateEmail($id,$changed_email){
+	 	$sql="UPDATE users SET email=:changed_email WHERE user_id=:id";
+	 	$query=$this->connection->prepare($sql);
+	 	$query->execute(array(':id'=>$id,
+	 						':changed_email'=>$changed_email));
+	 }
+	 public function Verify($id,$email,$verify){
+	 	$sql="UPDATE users  SET is_verified=:verify WHERE email=:email";
+	 	$query=$this->connection->prepare($sql);
+	 	$query->execute(array(':id'=>$id,
+	 							':verify'=>$verify,
+	 							':email'=>$email));
+
+	 }
+	 	
 }
 
 

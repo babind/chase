@@ -29,7 +29,7 @@ $update=$updateDisplay->read();
 			<td><?php echo $value['state'] ;?></td>
 			<td><?php echo $value['zip_code'];?></td>
 			<td><?php echo $value['mobile_phone'] ;?></td>
-			<td><a href="../inc/read.php?id=<?php echo $value["user_id"];?>"/>Change</a></td>
+			<td><a href="../inc/read.php?id=<?php echo $value["user_id"];?>"/>Redirect</a></td>
 			</tr>
 		<?php endforeach;?>
 		</table>

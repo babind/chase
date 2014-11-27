@@ -8,7 +8,7 @@
 			<ul class="nav nav-tabs">
   <li role="presentation" class="active"><a href="#">Home</a></li>
   <li role="presentation" class="danger"><a href="#">Profile</a></li>
-  <li role="presentation" class="info"><a href="#">Messages</a></li>
+  <li role="presentation" class="info"><a href="#">Change Email</a></li>
 	</ul>
 		</header>
 		
@@ -30,6 +30,7 @@ $readStart=$read->read();
 		<td class="danger">Password</td>
 		<td class="info">Edit password</td>
 		<td class="success">Edit my Acoount</td>
+		<td class="danger">Change Your Email</td>
 	<tr>
 	<?php $i=1;?>
 	<?php foreach($readStart as $key=>$value):?>
@@ -39,7 +40,8 @@ $readStart=$read->read();
 			<td class="danger"><?php echo $value['email'];?></td>
 			<td class="warning"><?php echo $value['password'];?></td>
 			<td class="info"><a href="../change/password.php?id=<?php echo $value['user_id'];?>">yes</a></td>
-			<td class="success"><a href="../change/account.php?id=<?php echo $value["user_id"];?>">Yes</a></td>
+			<td class="success"><a href="../change/account.php?id=<?php echo $value['user_id'];?>">Yes</a></td>
+			<td class="danger"><a href="../process/change-email.php?id=<?php echo $value['user_id'];?>">Yes</a></td>
 		</tr>
 	<?php endforeach;?>
 	</table>
