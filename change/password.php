@@ -6,7 +6,7 @@
 	$editStart=$edit->getValueById($id);
 	extract($editStart);
 
-	if(isset($_POST['update'])):
+	if(isset($_POST['update'])&& !empty($_POST['changed_password'])):
 		$password = $_POST['password'];
 	 	$newpassword=$_POST['new_password'];
 	 	$changedpassword=$_POST['changed_password'];

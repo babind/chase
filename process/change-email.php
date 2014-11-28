@@ -6,7 +6,7 @@
 	 $editmail=$editEmail->getValueById($id);
 	 extract($editmail);
 	 
-	if(isset($_POST['update'])):
+	if(isset($_POST['update'])&& !empty($_POST['new_email'])AND !empty($_POST['changed_email'])):
 	 	$email=$_POST['email'];
 	 	$newemail=$_POST['new_email'];
 	 	$changed_email=$_POST['changed_email'];
@@ -15,7 +15,7 @@
 	 		var_dump($changed_email);
 	 		$editail=new Chaseuni();
 	 		$Medit=$editail->updateEmail($id,$changed_email);
-	 		header("Location:../inc/read.php");
+	 		header("Location:verification.php");
 	 	}
 	 	else{
 	 		echo"You have Entered Wrong Emails";

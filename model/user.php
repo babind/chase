@@ -64,11 +64,11 @@ Class Chaseuni{
 	 						':changed_email'=>$changed_email));
 	 }
 	 public function Verify($id,$email,$verify){
-	 	$sql="UPDATE users  SET is_verified=:verify WHERE email=:email";
+	 	$sql="UPDATE users  SET email=:email,verification_code=:verify WHERE user_id=:id";
 	 	$query=$this->connection->prepare($sql);
 	 	$query->execute(array(':id'=>$id,
-	 							':verify'=>$verify,
-	 							':email'=>$email));
+	 							':email'=>$email,
+	 							':verify'=>$verify));
 
 	 }
 	 	

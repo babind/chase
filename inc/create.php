@@ -1,6 +1,6 @@
 	<?php
 	include_once'../model/user.php';
-	if(isset($_POST['login'])):
+	if(isset($_POST['login'])&& !empty($_POST['name']) AND !empty($_POST['password'])&& !empty($_POST['email'])):
 		$name=$_POST['name'];
 		$email=$_POST['email'];
 		$password=$_POST['password'];
