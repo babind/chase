@@ -3,7 +3,7 @@
 	$id=$_GET['id'];
 	include_once'../model/user.php';
 	$edit=new Chaseuni();
-	$editStart=$edit->getValueById($id);
+	$editStart=$edit->find($id);
 	extract($editStart);
 
 	if(isset($_POST['update'])&& !empty($_POST['changed_password'])):

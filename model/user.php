@@ -7,6 +7,8 @@ Class Chaseuni{
 	private $username="root";
 	private $password="a";
 	public $connection="";
+	//public 	$flasherror="";
+	//public	$flashSuccess="";
 
 	public function __construct(){
 		$this->connection=new PDO("mysql:host=".$this->host.";dbname=".$this->dbname,$this->username,$this->password);
@@ -30,7 +32,7 @@ Class Chaseuni{
 		return $submit;
 	}
 
-	public function getValueById($id){
+	public function find($id){
 		$sql="SELECT * FROM users WHERE user_id=:id";
 		$query=$this->connection->prepare($sql);
 		$query->execute(array(':id'=>$id));
@@ -63,15 +65,66 @@ Class Chaseuni{
 	 	$query->execute(array(':id'=>$id,
 	 						':changed_email'=>$changed_email));
 	 }
-	 public function Verify($id,$email,$verify){
-	 	$sql="UPDATE users  SET email=:email,verification_code=:verify WHERE user_id=:id";
+	 public function VerifyEmail($id){
+	 	$user=$this->find($id);
+
+	 	$sql="UPDATE users  SET is_verified=:verify WHERE user_id=:id";
 	 	$query=$this->connection->prepare($sql);
-	 	$query->execute(array(':id'=>$id,
-	 							':email'=>$email,
-	 							':verify'=>$verify));
+	 	$query->execute(array('is_verified'=>'Y',
+	 							':email'=>$email));
 
 	 }
-	 	
+
+	 public function sendVerificationLink($id){
+	 	$user=$this->find($id);
+	 	extract($user);
+	 	$to=$user('email');
+	 	$subject="Verifaiction Email";
+	 	$verificationHref="http://ideasoffshore.com/Chaseuni/email_verification.php?verification_code=$verification_code&member_id=$member_id";
+	 	$verificationLink="<a href='$verificationHref'>verify</a>";
+	 	$txt="Helllo $first_name $last_name!,<br>
+	 		Please click the following link to verify your email address<br>
+	 		$verificationLink<br>
+	 		Thank you!";
+	 	$headers="MIME-version:1.0"."\r\n";
+	 	$headers="Content-type:text/html;charset=UTF-8"."\r\n";
+	 	$headers="From:admin@ideasoffshore.com"."\r\n".
+	 				"CC:babin.dahal3@gmail.com";
+
+	 	$mail	=mail($to,$subject,$txt,$headers);
+	 	return $mail;			
+	 }
+
+	 public function findmail($email)
+	 {
+	 	$sql="SELECT * FROM users WHERE email=:email";
+	 	$query->$this->connection->prepare($sql);
+	 	$query->execute(array(':email'=>$email));
+	 	$data=$query->execute(PDO::FETCH_ASSOC);
+	 	return $data;
+	 }
+
+	 public function isEmailUsedByOther($own_email,$email)
+	 {
+	 	if($own_email==$email){
+	 		return true;
+
+	 	}else{
+	 		return $this->doesEmailExists($email);
+
+	 	}
+	 }
+
+	 public function doesEmailExists($email)
+	 {
+	 	$sql="SELECT * FROM users WHERE email=:email";
+	 	$query=$this->connection->prepare($sql);
+	 	$query->execute(array(':email'=>$email));
+	 	$data=$query->fetch(PDO::FETCH_ASSOC);
+	 	return count($data)==0 ? false:true;
+	 }
+
+
 }
 
 

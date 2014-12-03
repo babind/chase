@@ -15,7 +15,7 @@
 	 		var_dump($changed_email);
 	 		$editail=new Chaseuni();
 	 		$Medit=$editail->updateEmail($id,$changed_email);
-	 		header("Location:verification.php");
+	 		header("Location:email_verification.php");
 	 	}
 	 	else{
 	 		echo"You have Entered Wrong Emails";
